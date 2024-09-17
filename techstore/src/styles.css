@@ -1,0 +1,12 @@
+
+.titulo {
+    font-family: "preloslab-book", sans-serif;
+    font-style: normal;
+    margin-bottom: 24px;
+  
+    font-size: 28px;
+    line-height: 28px;
+
+    text-align: center;
+    margin: 10px; padding: 10px;
+}  

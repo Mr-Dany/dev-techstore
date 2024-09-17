@@ -1,0 +1,147 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="titulo">PRODUCTOS</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card body">
+          <h5 class="titulo">AGREGAR PRODUCTOS</h5>
+          <!-- FORMULARIO PARA GUARDAR LOS DATOS DE LA TARJETA -->
+
+          <div style="margin: 10px">
+            <!-- formgroup par decir que los valores se guarden en la variable form
+                ngsubmit para guardar el formulario en la funcion agregarTarjeta -->
+            <form [formGroup]="form" (ngSubmit)="guardarProducto()">
+              <!-- Entradas de datos -->
+              <div class="input-group mb-3">
+                <span class="input-group-text">
+                  <i
+                    class="fas fa-user"
+                    [class.green-icon]="this.form.get('nombre')?.valid"
+                    [class.red-icon]="
+                      this.form.get('nombre')?.invalid &&
+                      this.form.get('nombre')?.touched
+                    "
+                  ></i>
+                </span>
+                <input
+                  formControlName="nombre"
+                  maxlength="20"
+                  type="text"
+                  class="form-control"
+                  placeholder="Producto"
+                />
+              </div>
+              
+              <div class="col-lg-12">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">
+                    <i
+                      class="fas fa-credit-card"
+                      [class.green-icon]="this.form.get('precio')?.valid"
+                      [class.red-icon]="
+                        this.form.get('precio')?.invalid &&
+                        this.form.get('precio')?.touched
+                      "
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="precio"
+                    step="0.01"
+                    min="0.01"
+                    type="text"
+                    class="form-control"
+                    placeholder="Precio"
+                    maxlength="6"
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <button class="dropdown-toggle" (click)="toggleDropdown()" type="button">
+                  Selecciona opciones
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                  <ng-container *ngFor="let categoria of listCategorias">
+                    <div class="dropdown-item">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedOptions.includes(categoria)"
+                        (change)="onSelectionChange(categoria)"
+                      />
+                      {{ categoria.nombre }}
+                    </div>
+                  </ng-container>
+                </div>
+
+                <p class="mt-3">
+                  Opciones seleccionadas: {{ getSelectedOptions() }}
+                </p>
+              </div>
+
+              
+              
+
+              <div class="d-grid gap-2">
+                <button
+                  [disabled]="this.form.invalid"
+                  type="submit"
+                  class="btn btn-success btn-lg"
+                >
+                  <i class="fas fa-save"></i>&nbsp; Guardar
+                </button>
+              </div>
+            
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col lg-6">
+      <div class="card">
+        <div class="card body">
+          <h5 class="titulo">LISTADO DE PRODUCTOS</h5>
+          <!-- tabla de registros -->
+          <div class="container text-center" style="margin: 10px">
+            <table class="table">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">#</th>
+                  <td class="negrita">Lista de Productos</td>
+                  <td class="negrita">Precio</td>
+                  <td class="negrita">Categoria</td>
+                  <td class="negrita">Accion</td>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of listProductos, let i = index">
+                  <th scope="row">{{ i + 1 }}</th> 
+                  <td>{{ producto.nombre }}</td>
+                  <td>$ {{ producto.precio }}</td>
+                  <td>{{ getCategorias(producto) }}</td>
+                  <td>
+                    <i
+                      (click)="eliminarProducto(producto.id)"
+                      class="far fa-trash-alt text-danger"
+                    ></i>
+                  </td>
+                </tr>
+                <!-- <button (click)="showSuccess()">asdf</button> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-categorias></app-categorias>

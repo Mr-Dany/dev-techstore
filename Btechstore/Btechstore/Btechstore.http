@@ -1,0 +1,6 @@
+@Btechstore_HostAddress = http://localhost:5282
+
+GET {{Btechstore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

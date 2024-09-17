@@ -1,0 +1,52 @@
+.negrita{
+    font-weight: bold;
+   }
+.far{
+    cursor: pointer;
+}
+.green-icon {
+    color: #198754;
+}
+.red-icon {
+    color: #dc3545;
+}
+/* Contenedor del dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Estilo del botón del dropdown */
+  .dropdown-toggle {
+    background-color: #68be97;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  /* Estilo del menú del dropdown */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  /* Mostrar el menú cuando se activa */
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  /* Estilo de los elementos del menú */
+  .dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  /* Estilo para el hover en los elementos del menú */
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
